@@ -1,0 +1,13 @@
+<html>
+<body>
+{{#persons}}
+    <a href="/info?id={{id}}">{{firstName}} {{lastName}}</a><br/>
+{{/persons}}
+{{^beginning}}
+<a href="/?offsetDown={{offset}}">Previous</a>
+{{/beginning}}
+{{^end}}
+<a href="/?offsetUp={{offset}}">Next</a>
+{{/end}}
+</body>
+</html>
