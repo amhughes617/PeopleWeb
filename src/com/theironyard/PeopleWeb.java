@@ -24,14 +24,10 @@ public class PeopleWeb {
                 "/",
                 ((request, response) -> {
                     HashMap m = new HashMap();
-                    String offsetUpStr = request.queryParams("offsetUp");
-                    String offsetDownStr = request.queryParams("offsetDown");
+                    String offsetStr = request.queryParams("offset");
                     int start = 0;
-                    if (offsetUpStr != null) {
-                        start = Integer.valueOf(offsetUpStr);
-                    }
-                    else if (offsetDownStr != null) {
-                        start = Integer.valueOf(offsetDownStr) - 40;
+                    if (offsetStr != null) {
+                        start += Integer.valueOf(offsetStr);
                     }
                     int offset = 20 + start;
                     ArrayList<Person> temp = new ArrayList<>(persons.subList(start, Math.min(offset, persons.size())));
@@ -39,7 +35,8 @@ public class PeopleWeb {
                     m.put("end", start >= persons.size() - 20);
                     m.put("beginning", start == 0);
                     m.put("persons", temp);
-                    m.put("offset", offset);
+                    m.put("offsetUp", offset);
+                    m.put("offsetDown", offset - 40);
                     return new ModelAndView(m, "home.html");
                 }),
                 new MustacheTemplateEngine()
