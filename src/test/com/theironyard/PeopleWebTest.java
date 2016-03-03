@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
  * Created by alexanderhughes on 3/2/16.
  */
 public class PeopleWebTest {
+
     public Connection startConnection() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./test");
         PeopleWeb.createTables(conn);
